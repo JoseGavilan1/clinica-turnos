@@ -1,0 +1,44 @@
+.navbar {
+  background-color: #005f73; /* Azul médico oscuro */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.3s, border-bottom 0.3s;
+  padding-bottom: 0.2rem;
+  border-bottom: 2px solid transparent;
+}
+
+.navbar-links a:hover {
+  color: #ffffff;
+}
+
+/* Esta es la clase que Angular aplica automáticamente al link de la página actual */
+.navbar-links a.active {
+  color: #ffffff;
+  font-weight: 600;
+  border-bottom: 2px solid #94d2bd; /* Un verde agua para resaltar */
+}

@@ -1,0 +1,104 @@
+.home-container {
+  text-align: center;
+  padding: 3rem 1rem;
+  animation: fadeIn 0.5s ease-out; /* Una pequeña animación al entrar */
+}
+
+.hero {
+  margin-bottom: 4rem;
+}
+
+.hero h1 {
+  color: #005f73;
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.hero p {
+  color: #555;
+  font-size: 1.15rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.roles-cards {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap; /* Para que se adapte en celulares */
+}
+
+.card {
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 340px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 95, 115, 0.15);
+}
+
+.card-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.card h3 {
+  color: #005f73;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.card p {
+  color: #666;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  flex-grow: 1; /* Empuja el botón hacia abajo */
+}
+
+.btn-primary, .btn-secondary {
+  width: 100%;
+  padding: 0.85rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-primary {
+  background-color: #0a9396;
+  color: white;
+}
+
+.card:hover .btn-primary {
+  background-color: #005f73;
+}
+
+.btn-secondary {
+  background-color: #e2e8f0;
+  color: #334155;
+}
+
+.card:hover .btn-secondary {
+  background-color: #cbd5e1;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

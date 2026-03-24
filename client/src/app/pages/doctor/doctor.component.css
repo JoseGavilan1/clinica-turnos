@@ -1,0 +1,83 @@
+.doctor-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.dashboard-card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
+}
+
+.dashboard-card h2 {
+  color: #005f73;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-card p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.appointments-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.appointments-table th {
+  background-color: #f8fafc;
+  padding: 1rem;
+  font-weight: 600;
+  color: #475569;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.appointments-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #333;
+  vertical-align: middle;
+}
+
+.status-badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Estado pendiente (Naranja/Amarillo) */
+.status-badge.pendiente {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.action-btn {
+  padding: 0.5rem 1rem;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.action-btn:hover {
+  background-color: #059669;
+}
+
+.empty-state {
+  text-align: center;
+  color: #94a3b8;
+  padding: 2rem !important;
+  font-style: italic;
+}

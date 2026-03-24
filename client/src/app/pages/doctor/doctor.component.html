@@ -1,0 +1,59 @@
+<div class="doctor-container">
+  <div class="dashboard-card">
+    <h2>Panel Médico - Turnos Agendados</h2>
+    <p>Gestión de pacientes del día.</p>
+
+    <div class="table-responsive">
+      <table class="appointments-table">
+        <thead>
+          <tr>
+            <th>Paciente</th>
+            <th>RUT</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Estado</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (appt of appointments; track appt._id) {
+            <tr>
+              <td>{{ appt.patientName }}</td>
+              <td>{{ appt.rut }}</td>
+              <td>{{ appt.date }}</td>
+              <td>{{ appt.time }}</td>
+              <td>
+                <span
+                  class="status-badge"
+                  [class.pendiente]="appt.status === 'Pendiente'"
+                >
+                  {{ appt.status }}
+                </span>
+              </td>
+              <td>
+                @if (appt.status === "Pendiente") {
+                  <button
+                    class="action-btn"
+                    (click)="markAsCompleted(appt._id)"
+                  >
+                    ✅ Atendido
+                  </button>
+                } @else {
+                  <span style="color: #10b981; font-weight: 600"
+                    >✔️ Finalizado</span
+                  >
+                }
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="6" class="empty-state">
+                No hay turnos agendados por el momento.
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
