@@ -71,4 +71,9 @@ app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT} 🚀`);
 });
 
+// Ruta de bienvenida para saber que la API está viva
+app.get('/', (req, res) => {
+  res.send('🏥 API de Clínica Turnos funcionando perfectamente en Vercel!');
+});
+
 module.exports = app;
