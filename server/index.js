@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({
   origin: [
     'http://localhost:4200', 
-    'https://tu-proyecto-frontend.vercel.app' // <-- Agrega aquí la URL de tu FRONTEND en Vercel
+    'https://clinica-turnos-jgavilan.vercel.app' // <-- Agrega aquí la URL de tu FRONTEND en Vercel
   ],
   methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   credentials: true
