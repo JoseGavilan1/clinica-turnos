@@ -86,3 +86,19 @@ input:focus, select:focus {
   color: #9ca3af;
   cursor: not-allowed;
 }
+
+/* Una versión pequeña del spinner para botones */
+.loader-mini {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #FFF;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

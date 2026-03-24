@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AppointmentService } from '../../services/appointment.service'; // <-- 1. Importar el servicio
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-patient',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './patient.component.html',
   styleUrl: './patient.component.css'
 })
 export class PatientComponent {
+  isLoading = false;
   // 2. Inyectar el servicio
   private appointmentService = inject(AppointmentService);
 
@@ -22,15 +24,16 @@ export class PatientComponent {
 
   onSubmit() {
     if (this.appointmentForm.valid) {
-      // 3. Enviar los datos al backend
+      this.isLoading = true; // <-- Iniciamos carga
       this.appointmentService.createAppointment(this.appointmentForm.value).subscribe({
-        next: (response) => {
+        next: () => {
           alert('¡Turno solicitado con éxito!');
           this.appointmentForm.reset();
+          this.isLoading = false; // <-- Finalizamos carga
         },
         error: (err) => {
-          console.error('Error al guardar el turno', err);
-          alert('Hubo un error al guardar el turno. Revisa la consola.');
+          console.error(err);
+          this.isLoading = false; // <-- Finalizamos carga aunque falle
         }
       });
     }

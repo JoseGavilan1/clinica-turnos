@@ -3,7 +3,13 @@
     <h2>Panel Médico - Turnos Agendados</h2>
     <p>Gestión de pacientes del día.</p>
 
-    <div class="table-responsive">
+    @if (isLoading) {
+      <div class="spinner-container">
+        <span class="loader"></span>
+        <p>Consultando base de datos...</p>
+      </div>
+    } @else {
+<div class="table-responsive">
       <table class="appointments-table">
         <thead>
           <tr>
@@ -55,5 +61,7 @@
         </tbody>
       </table>
     </div>
+    }
+    
   </div>
 </div>

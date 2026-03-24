@@ -1,3 +1,4 @@
+
 import { Component, inject, OnInit } from '@angular/core';
 import { AppointmentService } from '../../services/appointment.service';
 
@@ -10,6 +11,7 @@ import { AppointmentService } from '../../services/appointment.service';
 })
 export class DoctorComponent implements OnInit {
   appointments: any[] = [];
+  isLoading = true;
   private appointmentService = inject(AppointmentService);
 
   // ngOnInit se ejecuta automáticamente cuando se abre esta pantalla
@@ -18,12 +20,17 @@ export class DoctorComponent implements OnInit {
   }
 
   loadAppointments() {
+    this.isLoading = true;
     this.appointmentService.getAppointments().subscribe({
       next: (data) => {
         this.appointments = data;
+        this.isLoading = false;
         console.log('Turnos cargados:', this.appointments);
       },
-      error: (err) => console.error('Error al cargar los turnos:', err)
+      error: (err) => {
+        console.error('Error al cargar los turnos:', err);
+        this.isLoading = false;
+      }
     });
   }
 
