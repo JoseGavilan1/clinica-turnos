@@ -1,7 +1,23 @@
 require('dotenv').config();
 const dns = require('node:dns');
 dns.setDefaultResultOrder('ipv4first'); // Nuestro truco confiable para Node 20+
+let isConnected = false;
 
+
+const connectDB = async () => {
+  if (isConnected) return;
+
+  try {
+    const db = await mongoose.connect(process.env.MONGO_URI, {
+      serverSelectionTimeoutMS: 5000,
+      family: 4 // Fuerza a usar IPv4, vital para evitar timeouts en Vercel
+    });
+    isConnected = db.connections[0].readyState;
+    console.log('🏥 MongoDB Conectado');
+  } catch (err) {
+    console.error('❌ Error de conexión:', err);
+  }
+};
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -35,6 +51,7 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // 1. Crear un nuevo turno (Lo usará el Portal del Paciente)
 app.post('/api/appointments', async (req, res) => {
+    await connectDB();
   try {
     const newAppointment = new Appointment(req.body);
     await newAppointment.save();
@@ -46,6 +63,7 @@ app.post('/api/appointments', async (req, res) => {
 
 // 2. Obtener todos los turnos (Lo usará el Panel Médico)
 app.get('/api/appointments', async (req, res) => {
+    await connectDB();
   try {
     // Los ordenamos por fecha de creación (los más nuevos al final)
     const appointments = await Appointment.find().sort({ date: 1, time: 1 });
@@ -57,6 +75,7 @@ app.get('/api/appointments', async (req, res) => {
 
 // 3. Actualizar el estado de un turno (Lo usará el Panel Médico)
 app.patch('/api/appointments/:id', async (req, res) => {
+    await connectDB();
   try {
     const updatedAppointment = await Appointment.findByIdAndUpdate(
       req.params.id, 
