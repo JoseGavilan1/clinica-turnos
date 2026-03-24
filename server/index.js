@@ -13,7 +13,10 @@ const PORT = process.env.PORT || 5000;
 
 // Configuración de CORS para aceptar peticiones de Angular
 app.use(cors({
-  origin: 'http://localhost:4200',
+  origin: [
+    'http://localhost:4200', 
+    'https://tu-proyecto-frontend.vercel.app' // <-- Agrega aquí la URL de tu FRONTEND en Vercel
+  ],
   methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   credentials: true
 }));

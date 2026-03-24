@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AppointmentService {
   // La URL de tu backend local
-  private apiUrl = 'http://localhost:5000/api/appointments';
+  private apiUrl = 'https://clinica-turnos-chi.vercel.app/api/appointments';
 
   constructor(private http: HttpClient) { }
 
