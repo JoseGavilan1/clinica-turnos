@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #005f73; /* Azul médico oscuro */
+  background-color: #005f73;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -36,9 +36,8 @@
   color: #ffffff;
 }
 
-/* Esta es la clase que Angular aplica automáticamente al link de la página actual */
 .navbar-links a.active {
   color: #ffffff;
   font-weight: 600;
-  border-bottom: 2px solid #94d2bd; /* Un verde agua para resaltar */
+  border-bottom: 2px solid #94d2bd;
 }

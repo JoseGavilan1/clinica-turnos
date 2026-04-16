@@ -1,7 +1,7 @@
 .home-container {
   text-align: center;
   padding: 3rem 1rem;
-  animation: fadeIn 0.5s ease-out; /* Una pequeña animación al entrar */
+  animation: fadeIn 0.5s ease-out; 
 }
 
 .hero {
@@ -27,7 +27,7 @@
   display: flex;
   justify-content: center;
   gap: 2.5rem;
-  flex-wrap: wrap; /* Para que se adapte en celulares */
+  flex-wrap: wrap;
 }
 
 .card {
@@ -65,7 +65,7 @@
   margin-bottom: 2rem;
   font-size: 0.95rem;
   line-height: 1.5;
-  flex-grow: 1; /* Empuja el botón hacia abajo */
+  flex-grow: 1;
 }
 
 .btn-primary, .btn-secondary {
@@ -97,7 +97,6 @@
   background-color: #cbd5e1;
 }
 
-/* Animación de entrada */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }

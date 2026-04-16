@@ -12,7 +12,6 @@ import { CommonModule } from '@angular/common';
 })
 export class PatientComponent {
   isLoading = false;
-  // 2. Inyectar el servicio
   private appointmentService = inject(AppointmentService);
 
   appointmentForm = new FormGroup({
@@ -24,16 +23,16 @@ export class PatientComponent {
 
   onSubmit() {
     if (this.appointmentForm.valid) {
-      this.isLoading = true; // <-- Iniciamos carga
+      this.isLoading = true;
       this.appointmentService.createAppointment(this.appointmentForm.value).subscribe({
         next: () => {
           alert('¡Turno solicitado con éxito!');
           this.appointmentForm.reset();
-          this.isLoading = false; // <-- Finalizamos carga
+          this.isLoading = false;
         },
         error: (err) => {
           console.error(err);
-          this.isLoading = false; // <-- Finalizamos carga aunque falle
+          this.isLoading = false; 
         }
       });
     }

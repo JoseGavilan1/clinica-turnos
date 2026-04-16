@@ -1,6 +1,6 @@
 require('dotenv').config();
 const dns = require('node:dns');
-dns.setDefaultResultOrder('ipv4first'); // Nuestro truco confiable para Node 20+
+dns.setDefaultResultOrder('ipv4first'); 
 let isConnected = false;
 
 
@@ -10,7 +10,6 @@ const connectDB = async () => {
   try {
     const db = await mongoose.connect(process.env.MONGO_URI, {
       serverSelectionTimeoutMS: 5000,
-      family: 4 // Fuerza a usar IPv4, vital para evitar timeouts en Vercel
     });
     isConnected = db.connections[0].readyState;
     console.log('🏥 MongoDB Conectado');
@@ -27,11 +26,10 @@ const Appointment = require('./models/Appointment');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Configuración de CORS para aceptar peticiones de Angular
 app.use(cors({
   origin: [
     'http://localhost:4200', 
-    'https://clinica-turnos-jgavilan.vercel.app' // <-- Agrega aquí la URL de tu FRONTEND en Vercel
+    'https://clinica-turnos-jgavilan.vercel.app' 
   ],
   methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   credentials: true
@@ -39,7 +37,6 @@ app.use(cors({
 
 app.use(express.json());
 
-// Conexión a MongoDB
 mongoose.connect(process.env.MONGO_URI, {
   serverSelectionTimeoutMS: 5000,
   family: 4
@@ -47,9 +44,7 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log('🏥 Base de datos de la Clínica conectada!'))
 .catch(err => console.error('Error al conectar:', err));
 
-// --- RUTAS DE LA API ---
 
-// 1. Crear un nuevo turno (Lo usará el Portal del Paciente)
 app.post('/api/appointments', async (req, res) => {
     await connectDB();
   try {
@@ -61,11 +56,9 @@ app.post('/api/appointments', async (req, res) => {
   }
 });
 
-// 2. Obtener todos los turnos (Lo usará el Panel Médico)
 app.get('/api/appointments', async (req, res) => {
     await connectDB();
   try {
-    // Los ordenamos por fecha de creación (los más nuevos al final)
     const appointments = await Appointment.find().sort({ date: 1, time: 1 });
     res.json(appointments);
   } catch (error) {
@@ -73,14 +66,13 @@ app.get('/api/appointments', async (req, res) => {
   }
 });
 
-// 3. Actualizar el estado de un turno (Lo usará el Panel Médico)
 app.patch('/api/appointments/:id', async (req, res) => {
     await connectDB();
   try {
     const updatedAppointment = await Appointment.findByIdAndUpdate(
       req.params.id, 
       { status: req.body.status }, 
-      { new: true } // Esto le dice a Mongoose que nos devuelva el dato ya actualizado
+      { new: true } 
     );
     res.json(updatedAppointment);
   } catch (error) {
@@ -88,12 +80,10 @@ app.patch('/api/appointments/:id', async (req, res) => {
   }
 });
 
-// Iniciar servidor
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT} 🚀`);
 });
 
-// Ruta de bienvenida para saber que la API está viva
 app.get('/', (req, res) => {
   res.send('🏥 API de Clínica Turnos funcionando perfectamente en Vercel!');
 });

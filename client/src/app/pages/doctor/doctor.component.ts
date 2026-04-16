@@ -14,7 +14,6 @@ export class DoctorComponent implements OnInit {
   isLoading = true;
   private appointmentService = inject(AppointmentService);
 
-  // ngOnInit se ejecuta automáticamente cuando se abre esta pantalla
   ngOnInit() {
     this.loadAppointments();
   }
@@ -34,11 +33,9 @@ export class DoctorComponent implements OnInit {
     });
   }
 
-  // No olvides agregar 'updateAppointmentStatus' a lo que ya tienes
 markAsCompleted(id: string) {
   this.appointmentService.updateAppointmentStatus(id, 'Completado').subscribe({
     next: () => {
-      // Si el backend nos da el OK, volveím a cargar la lista para ver los cambios
       this.loadAppointments();
     },
     error: (err) => console.error('Error al actualizar el estado:', err)

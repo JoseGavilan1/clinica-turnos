@@ -80,14 +80,12 @@ input:focus, select:focus {
   background-color: #005f73;
 }
 
-/* Estilo para cuando faltan datos */
 .submit-btn:disabled {
   background-color: #e5e7eb;
   color: #9ca3af;
   cursor: not-allowed;
 }
 
-/* Una versión pequeña del spinner para botones */
 .loader-mini {
   width: 18px;
   height: 18px;
